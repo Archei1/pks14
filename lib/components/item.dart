@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pks10/model/product.dart';
-import 'package:pks10/pages/information.dart';
+import 'package:pks11/model/product.dart';
+import 'package:pks11/pages/information.dart';
 
 class ItemNote extends StatelessWidget {
   final Car car;

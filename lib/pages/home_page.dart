@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pks10/components/item.dart';
-import 'package:pks10/model/product.dart';
-import 'package:pks10/pages/add_car_page.dart';
-import 'package:pks10/api_service.dart';
+import 'package:pks11/components/item.dart';
+import 'package:pks11/model/product.dart';
+import 'package:pks11/pages/add_car_page.dart';
+import 'package:pks11/api_service.dart';
 
 class HomePage extends StatefulWidget {
   final Function(Car) onFavoriteToggle;
@@ -24,12 +24,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final ApiService apiService = ApiService();
-  List<dynamic> cars = [];
+  List<Car> cars = [];
+  List<Car> filteredCars = [];
+  String searchQuery = '';
 
   Future<void> loadCars() async {
     final fetchedCars = await apiService.getProducts();
     setState(() {
       cars = fetchedCars;
+      filteredCars = fetchedCars;
     });
   }
 
@@ -44,6 +47,7 @@ class _HomePageState extends State<HomePage> {
       final newCar = await apiService.createProducts(car);
       setState(() {
         cars.add(newCar);
+        filteredCars = cars;
       });
     } catch (e) {
       print("Ошибка добавления машины: $e");
@@ -55,6 +59,7 @@ class _HomePageState extends State<HomePage> {
       await apiService.deleteProduct(id);
       setState(() {
         cars.removeWhere((car) => car.id == id);
+        filteredCars = cars;
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Машина с ID $id удалена")),
@@ -142,11 +147,12 @@ class _HomePageState extends State<HomePage> {
                   );
                   try {
                     Car result =
-                        await apiService.updateProduct(car.id, updatedCar);
+                    await apiService.updateProduct(car.id, updatedCar);
                     setState(() {
                       int index = cars.indexWhere((c) => c.id == car.id);
                       if (index != -1) {
                         cars[index] = result;
+                        filteredCars = cars;
                       }
                     });
                     Navigator.of(context).pop();
@@ -159,7 +165,8 @@ class _HomePageState extends State<HomePage> {
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                        content: Text('Пожалуйста, заполните все поля.')),
+                        content: Text('Пожалуйста, заполните все поля.')
+                    ),
                   );
                 }
               },
@@ -170,58 +177,84 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void _filterCars(String query) {
+    setState(() {
+      searchQuery = query.toLowerCase();
+      filteredCars = cars.where((car) {
+        final titleLower = car.title.toLowerCase();
+        final descriptionLower = car.description.toLowerCase();
+        return titleLower.contains(searchQuery) ||
+            descriptionLower.contains(searchQuery);
+      }).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Center(
-            child: Text(
-              'BMW Модели',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
+          title: const Text(
+            'BMW Модели',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           backgroundColor: Colors.blueGrey,
+          actions: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: TextField(
+                  onChanged: _filterCars,
+                  decoration: const InputDecoration(
+                    hintText: 'Поиск...',
+                    border: InputBorder.none,
+                    hintStyle: TextStyle(color: Colors.white70),
+                  ),
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: cars.isNotEmpty
+          child: filteredCars.isNotEmpty
               ? GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.75,
-                    crossAxisSpacing: 8.0,
-                    mainAxisSpacing: 8.0,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.75,
+              crossAxisSpacing: 8.0,
+              mainAxisSpacing: 8.0,
+            ),
+            itemCount: filteredCars.length,
+            itemBuilder: (BuildContext context, int index) {
+              final car = filteredCars[index];
+              final isFavorite = widget.favoriteCars.contains(car);
+              return GestureDetector(
+                onLongPress: () => _editCarDialog(context, car),
+                child: Dismissible(
+                  key: Key(car.id.toString()),
+                  background: Container(
+                    color: Colors.red,
+                    alignment: Alignment.centerRight,
+                    padding: const EdgeInsets.only(right: 20),
+                    child: const Icon(Icons.delete, color: Colors.white),
                   ),
-                  itemCount: cars.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final car = cars[index];
-                    final isFavorite = widget.favoriteCars.contains(car);
-                    return GestureDetector(
-                      onLongPress: () => _editCarDialog(context, car),
-                      child: Dismissible(
-                        key: Key(car.id.toString()),
-                        background: Container(
-                          color: Colors.red,
-                          alignment: Alignment.centerRight,
-                          padding: const EdgeInsets.only(right: 20),
-                          child: const Icon(Icons.delete, color: Colors.white),
-                        ),
-                        direction: DismissDirection.endToStart,
-                        onDismissed: (direction) async {
-                          await _removeCar(car.id);
-                        },
-                        child: ItemNote(
-                          car: car,
-                          isFavorite: isFavorite,
-                          onFavoriteToggle: () => widget.onFavoriteToggle(car),
-                          onAddToCart: () => widget.onAddToCart(car),
-                          onEdit: () => _editCarDialog(context, car),
-                        ),
-                      ),
-                    );
+                  direction: DismissDirection.endToStart,
+                  onDismissed: (direction) async {
+                    await _removeCar(car.id);
                   },
-                )
+                  child: ItemNote(
+                    car: car,
+                    isFavorite: isFavorite,
+                    onFavoriteToggle: () => widget.onFavoriteToggle(car),
+                    onAddToCart: () => widget.onAddToCart(car),
+                    onEdit: () => _editCarDialog(context, car),
+                  ),
+                ),
+              );
+            },
+          )
               : const Center(child: Text('Нет доступных автомобилей')),
         ),
         floatingActionButton: FloatingActionButton(

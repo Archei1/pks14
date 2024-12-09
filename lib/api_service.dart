@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:pks10/model/product.dart';
+import 'package:pks11/model/product.dart';
 
 class ApiService {
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: 'http://192.168.72.120:8080',
+      baseUrl: 'http://10.192.213.122:8080',
       connectTimeout: const Duration(seconds: 50),
       receiveTimeout: const Duration(seconds: 50),
     ),
@@ -12,7 +12,7 @@ class ApiService {
 
   Future<List<Car>> getProducts() async {
     try {
-      final response = await _dio.get('http://192.168.72.120:8080/products');
+      final response = await _dio.get('http://10.192.213.122:8080/products');
       if (response.statusCode == 200) {
         List<Car> carList = (response.data as List)
             .map((car) => Car.fromJson(car))
@@ -29,7 +29,7 @@ class ApiService {
   Future<Car> createProducts(Car car) async {
     try {
       final response = await _dio.post(
-        'http://192.168.72.120:8080/products/create',
+        'http://10.192.213.122:8080/products/create',
         data: car.toJson(),
       );
       if (response.statusCode == 200) {
@@ -44,7 +44,7 @@ class ApiService {
 
   Future<Car> getProductById(int id) async {
     try {
-      final response = await _dio.get('http://192.168.72.120:8080/products/$id');
+      final response = await _dio.get('http://10.192.213.122:8080/products/$id');
       if (response.statusCode == 200) {
         return Car.fromJson(response.data);
       } else {
@@ -58,7 +58,7 @@ class ApiService {
   Future<Car> updateProduct(int id, Car car) async {
     try {
       final response = await _dio.put(
-        'http://192.168.72.120:8080/products/update/$id',
+        'http://10.192.213.122:8080/products/update/$id',
         data: car.toJson(),
       );
       if (response.statusCode == 200) {
@@ -73,7 +73,7 @@ class ApiService {
 
   Future<void> deleteProduct(int id) async {
     try {
-      final response = await _dio.delete('http://192.168.72.120:8080/products/delete/$id');
+      final response = await _dio.delete('http://10.192.213.122:8080/products/delete/$id');
       if (response.statusCode == 204) {
         print("Car with ID $id deleted successfully.");
       } else {

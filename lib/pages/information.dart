@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pks10/model/product.dart';
+import 'package:pks11/model/product.dart';
 
 class CatalogPage extends StatelessWidget {
   const CatalogPage({super.key, required this.car});

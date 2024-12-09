@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pks10/pages/home_page.dart';
-import 'package:pks10/pages/favorites_page.dart';
-import 'package:pks10/pages/profile_page.dart';
-import 'package:pks10/pages/cart_page.dart';
+import 'package:pks11/pages/home_page.dart';
+import 'package:pks11/pages/favorites_page.dart';
+import 'package:pks11/pages/profile_page.dart';
+import 'package:pks11/pages/cart_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'model/product.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pks10/model/product.dart';
-import 'package:pks10/components/item.dart';
+import 'package:pks11/model/product.dart';
+import 'package:pks11/components/item.dart';
 
 class FavoritesPage extends StatelessWidget {
   final List<Car> favoriteCars;
