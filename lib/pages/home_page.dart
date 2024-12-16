@@ -4,6 +4,8 @@ import 'package:pks11/model/product.dart';
 import 'package:pks11/pages/add_car_page.dart';
 import 'package:pks11/api_service.dart';
 
+import 'chat_page.dart';
+
 class HomePage extends StatefulWidget {
   final Function(Car) onFavoriteToggle;
   final List<Car> favoriteCars;
@@ -213,6 +215,15 @@ class _HomePageState extends State<HomePage> {
                   style: const TextStyle(color: Colors.white),
                 ),
               ),
+            ),
+            IconButton(
+              icon: const Icon(Icons.chat, color: Colors.white),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ChatPage()),
+                );
+              },
             ),
           ],
         ),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "738963537488",
+    "project_id": "pks12-ca293",
+    "storage_bucket": "pks12-ca293.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738963537488:android:d965959b12cae711d59b55",
+        "android_client_info": {
+          "package_name": "com.example.pks10"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2zTQ5SAwBWbjuma8HvWCFkJzHG__iqGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

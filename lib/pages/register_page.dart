@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pks11/auth/auth_service.dart';
-import 'package:pks11/pages/profile_page.dart';
+
+
+import '../main.dart';
+import '../services/auth_service.dart';
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -32,7 +34,7 @@ class _RegisterPageState extends State<RegisterPage> {
       if (mounted) {
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => ProfilePage()),
+          MaterialPageRoute(builder: (context) => MainPage(selectedIndex: 3)),
               (route) => false,
         );
       }

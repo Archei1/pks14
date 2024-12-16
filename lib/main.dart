@@ -1,18 +1,21 @@
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pks11/pages/home_page.dart';
 import 'package:pks11/pages/favorites_page.dart';
 import 'package:pks11/pages/profile_page.dart';
 import 'package:pks11/pages/cart_page.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'model/product.dart';
 
 void main() async {
-  await Supabase.initialize(
-      url: "https://qzpzmvyhuozqxbrxxqid.supabase.co",
-      anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF6cHptdnlodW96cXhicnh4cWlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzMxNDA4MTAsImV4cCI6MjA0ODcxNjgxMH0.otybVNRjDSfaSNQv1Rk8hTZkEzqgHbHNmkEMOu7rwjw",
-  );
-
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  try {
+    // Proceed to run the app
+    runApp(const MyApp());
+  } catch (e) {
+    print("Error during anonymous sign-in: $e");
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -27,22 +30,29 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MainPage(),
+      home: MainPage(),
     );
   }
 }
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  int selectedIndex;
+  MainPage({super.key, this.selectedIndex = 0});
 
   @override
   _MainPageState createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-  int _selectedIndex = 0;
+  late int _selectedIndex;
   List<Car> _favoriteCars = [];
   List<CartItem> _cartItems = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.selectedIndex;
+  }
 
   void _toggleFavorite(Car car) {
     setState(() {

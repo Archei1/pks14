@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:pks11/auth/auth_service.dart';
 import 'package:pks11/pages/login_page.dart';
+
+import '../services/auth_service.dart';
+import 'orders_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -55,13 +57,14 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     ImageProvider avatarImage;
     if (_isValidUrl(_avatarUrlController.text)) {
       avatarImage = NetworkImage(_avatarUrlController.text);
     } else {
-      avatarImage = const AssetImage('assets/default_avatar.png'); // Убедитесь, что файл существует
+      avatarImage = const AssetImage('assets/default_avatar.png');
     }
 
     return SafeArea(
@@ -93,9 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Column(
                 children: [
                   GestureDetector(
-                    onTap: _isEditing
-                        ? () {} // Замените на вашу логику для изменения аватара
-                        : null,
+                    onTap: _isEditing ? () {} : null,
                     child: CircleAvatar(
                       radius: 60,
                       backgroundImage: avatarImage,
@@ -129,52 +130,57 @@ class _ProfilePageState extends State<ProfilePage> {
                     },
                   ),
                   const SizedBox(height: 10),
-                  // ... (Остальные TextFormField для email, телефона и URL аватара)
                   TextFormField(
                     controller: _emailController,
-                    // ...
+                    decoration: const InputDecoration(
+                      labelText: 'Email',
+                      prefixIcon: Icon(Icons.email, color: Colors.blueGrey),
+                      border: OutlineInputBorder(),
+                    ),
+                    enabled: _isEditing,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Пожалуйста, введите email';
+                      }
+                      return null;
+                    },
                   ),
+                  const SizedBox(height: 10),
                   TextFormField(
                     controller: _phoneController,
-                    // ...
-                  ),
-                  TextFormField(
-                    controller: _avatarUrlController,
-                    // ...
-                  ),
-                  const SizedBox(height: 20),
-                  _isEditing
-                      ? ElevatedButton.icon(
-                    onPressed: () {
-                      if (_isValidUrl(_avatarUrlController.text)) {
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            content: Image.network(
-                              _avatarUrlController.text,
-                              errorBuilder:
-                                  (context, error, stackTrace) {
-                                return const Text(
-                                    'Не удалось загрузить изображение');
-                              },
-                            ),
-                          ),
-                        );
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text(
-                                  'Введите корректный URL для аватара')),
-                        );
+                    decoration: const InputDecoration(
+                      labelText: 'Телефон',
+                      prefixIcon: Icon(Icons.phone, color: Colors.blueGrey),
+                      border: OutlineInputBorder(),
+                    ),
+                    enabled: _isEditing,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Пожалуйста, введите номер телефона';
                       }
+                      return null;
                     },
-                    icon: const Icon(Icons.visibility),
-                    label: const Text('Предпросмотр аватара'),
+                  ),
+                  const SizedBox(height: 40),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const OrdersPage(),
+                        ),
+                      );
+                    },
+                    icon: const Icon(Icons.shopping_bag, color: Colors.white),
+                    label: const Text(
+                      'Мои заказы',
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    ),
                     style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(double.infinity, 50),
                       backgroundColor: Colors.blueGrey,
                     ),
-                  )
-                      : const SizedBox.shrink(),
+                  ),
                 ],
               ),
             ),
@@ -193,3 +199,4 @@ class _ProfilePageState extends State<ProfilePage> {
     return true;
   }
 }
+
