@@ -1,16 +1,72 @@
-# pks10
+# ПКС Итоговый вариант приложения 
+## Рабкин Артур ЭФБО-05-22
+### Главня страница 
+![photo_2024-12-23_22-40-51](https://github.com/user-attachments/assets/8512361b-abdc-48f8-948a-4e33f27550b7)
 
-A new Flutter project.
+### Избранное
+![photo_2024-12-23_22-40-54](https://github.com/user-attachments/assets/5bcb4767-f3cf-4399-b926-391feb2c459f)
 
-## Getting Started
+### Корзина
+![photo_2024-12-23_22-40-56](https://github.com/user-attachments/assets/3f8b041e-8229-481c-a9db-2cf55f43b366)
 
-This project is a starting point for a Flutter application.
+### Профиль
+![photo_2024-12-23_22-40-57](https://github.com/user-attachments/assets/8f92bebb-e195-4e41-bcd5-c157b0a65788)
 
-A few resources to get you started if this is your first Flutter project:
+### Поиск по названия и описанию
+![photo_2024-12-23_22-40-58](https://github.com/user-attachments/assets/b219e9f2-88eb-4b58-a100-1e84d6488af3)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Редактирование карточки
+![photo_2024-12-23_22-41-00](https://github.com/user-attachments/assets/f207e5d8-e93f-4fea-9973-0f8855b3ff90)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Добавление нового товара
+![photo_2024-12-23_22-41-01](https://github.com/user-attachments/assets/2be711a9-290f-4aa4-8a19-0c583a686924)
+
+### Удаление товара из каталога
+![photo_2024-12-23_22-41-02](https://github.com/user-attachments/assets/14373838-52ff-42fd-a739-0f0467e0b468)
+
+### Чат
+![photo_2024-12-23_22-41-03](https://github.com/user-attachments/assets/01f7cf6b-81b9-4a7f-a508-c916f291d08c)
+
+### Карточка товара
+![photo_2024-12-23_22-41-04](https://github.com/user-attachments/assets/464d377f-5a00-4926-8cd6-4210eca05211)
+
+### Удаление товара из корзины
+![photo_2024-12-23_22-41-07](https://github.com/user-attachments/assets/99e77285-e7d6-42ce-a7b1-764028cf3213)
+
+### Подстверждение удаления товара из корзины
+![photo_2024-12-23_23-07-09](https://github.com/user-attachments/assets/fa60d96c-2e1b-43be-a629-40900a0185ff)
+
+### Редактирование профиля 
+![photo_2024-12-23_22-41-09](https://github.com/user-attachments/assets/eb92e581-f43a-40a2-9e7b-95b55d24ccb0)
+
+### Изменение аватара профиля
+![photo_2024-12-23_22-41-11](https://github.com/user-attachments/assets/9ef4d88d-b1db-465c-a8f8-342c823176ca)
+
+### Сохранение изменений
+![photo_2024-12-23_22-41-13](https://github.com/user-attachments/assets/db296e67-aaa4-403a-bd05-87d709ddc542)
+
+### История заказов
+![photo_2024-12-23_22-41-15](https://github.com/user-attachments/assets/ce90ffbd-19f3-4c5e-a327-5034717be61d)
+
+### Детали заказа
+![photo_2024-12-23_22-41-17](https://github.com/user-attachments/assets/df075a15-ffb0-4f4f-a2c3-506513b75e91)
+
+### Авторизация
+![photo_2024-12-23_22-41-19](https://github.com/user-attachments/assets/b4b963a5-5e2e-44bd-b21e-12c49c9eb16b)
+
+### Регистрация
+![photo_2024-12-23_22-41-20](https://github.com/user-attachments/assets/3701d9c4-72a0-471a-9179-0ad68bebaee4)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
