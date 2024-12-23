@@ -1,5 +1,35 @@
 # ПКС Итоговый вариант приложения 
-## Рабкин Артур ЭФБО-05-22
+# Рабкин Артур ЭФБО-05-22
+
+# Скриншоты попытки залить в RuStore
+## Последняя попытка залить в Рустор
+### Загруженный apk файл
+![image](https://github.com/user-attachments/assets/d3bff809-fdde-43f9-bde0-5ebefee37219)
+
+### Сообщение модератору и типы данных, которые будем брать 
+![image](https://github.com/user-attachments/assets/711c5c39-af59-4d69-9161-01ea0b59e9fa)
+
+### Информация о приложении и категории
+![image](https://github.com/user-attachments/assets/3c90b500-cf3c-4ed4-a546-d4d2af5b718e)
+
+### Описание 
+![image](https://github.com/user-attachments/assets/69287db0-e8e3-417e-913a-0c56a5c28dd7)
+
+### Иконка приложения 
+![image](https://github.com/user-attachments/assets/ad614b27-044c-49fb-8a2d-0400c550b742)
+
+### Снимки приложения 
+![image](https://github.com/user-attachments/assets/c604a95e-8798-4c03-8b91-6c66d8d6676f)
+
+### Попытки пройти модерацию 
+![image](https://github.com/user-attachments/assets/79940105-9d6c-45c0-8702-b01803e72e12)
+
+### Основная причина отказа 
+![image](https://github.com/user-attachments/assets/8ada2f70-9379-44e6-8b3d-1bc37b6f720c)
+
+
+
+# Скриншоты приложения
 ### Главня страница 
 ![photo_2024-12-23_22-40-51](https://github.com/user-attachments/assets/8512361b-abdc-48f8-948a-4e33f27550b7)
 
